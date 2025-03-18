@@ -1,0 +1,74 @@
+># Bubble Sort | Sorting Algorithm
+
+><img src="gif/transparent-warning-sign.png" alt="WARNING" width="30" height="30" > We should not use this method in real life project. This is only for learning.
+
+In **Bubble sort**, each element is compared with its adjacent element. If the first element is smaller than the second one, then the positions of the elements are interchanged, otherwise it is not changed.
+
+Then next element is compared with its adjacent element and the same process is repeated for all the elements in the array until we get a sorted array.
+
+![BubbleSort_Avg_case](/gif/BubbleSort_Avg_case.gif)
+
+>## Algorithm 
+```C++
+bubbleSort( list : array of items )
+ 
+   n = list.count;
+    
+   for i = 0 to n-1 do:
+ 
+      swapped = false
+      for j = 0 to n-i-1 do:
+ 
+         /* compare the adjacent elements */  
+         if list[j] > list[j+1] then 
+ 
+            /* swap them */
+            swap( list[j], list[j+1] )       
+            swapped = true
+ 
+         end if
+ 
+       end for
+       
+      /* if no number was swapped that means, break the loop.*/
+      if(swapped == false) then
+         break
+      end if
+ 
+   end for
+ 
+return list
+```
+
+><img src="https://icon-library.com/images/important-note-icon/important-note-icon-17.jpg" alt="NOTE" width="15" height="15" > Bubble Sort is sometimes also referred as Sinking sort as instead of Bubbling up the smallest element to the left side, some developer write an algorithm to moving (sinking) largest element to right side.
+
+>## Time Complexity
+Now if we consider time taken by each comparison is constant C. Then the total time taken for the above sorting will be C*( N-1 + N-2 + … + 2 + 1 )  which on solving becomes O(N^2) time complexity.
+
+<span style="display: block; text-align: center;">Average Case</span>|<span style="display: block; text-align: center;">Worst Case (Reverse List)</span>
+-----------------------------------------------------|------------------------------------------------------
+![BubbleSort_Avg_case](/gif/BubbleSort_Avg_case.gif) |  ![BubbleSort_Avg_case](/gif/BubbleSort_worst_case.gif)
+
+>## Space Complexity
+The **space complexity** for the same will be **O(1)** as all operations are almost in space and only a single variable is used in loop for holding value.
+
+Bubble sort gives stable and in place sorting.
+
+>## Advantage
+* When data set is small, bubble sort is efficient
+* Easy to implement
+* Memory efficient
+* It gives stable sort
+
+>## Disadvantage
+* It is time-inefficient as it is having O(N2) time complexity.
+* For large data set it is not very efficient as time grows exponentially.
+
+>## Example
+
+Let's sort the array `[5, 2, 9, 1, 5, 6]` using Bubble Sort:
+
+- **Initial Array**: [5, 2, 9, 1, 5, 6]
+- **Pass 1**: [2, 5, 1, 5, 6, 9] (9 bubbled to the correct position)
+- **Pass 2**: [2, 1, 5, 5, 6, 9]
+- **Pass 3**: [1, 2, 5, 5, 6, 9] (Array is now sorted)
