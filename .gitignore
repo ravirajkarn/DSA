@@ -1,2 +1,3 @@
 build/
 .vscode/
+!Algorithm/Shorting Algorithm/bubble_sort/.vscode/

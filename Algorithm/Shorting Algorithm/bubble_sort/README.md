@@ -2,6 +2,12 @@
 
 ><img src="gif/transparent-warning-sign.png" alt="WARNING" width="30" height="30" > We should not use this method in real life project. This is only for learning.
 
+## Work to do
+- [X] Understanding Bubble Sort Algorithm.
+- [X] Creating a basic C++ code for Bubble Sort Algorithm.
+- [] Creating Template for Bubble Sort Algorithm.
+- Applying Bubble Sort in other programming language.
+
 In **Bubble sort**, each element is compared with its adjacent element. If the first element is smaller than the second one, then the positions of the elements are interchanged, otherwise it is not changed.
 
 Then next element is compared with its adjacent element and the same process is repeated for all the elements in the array until we get a sorted array.
@@ -10,34 +16,20 @@ Then next element is compared with its adjacent element and the same process is 
 
 >## Algorithm 
 ```C++
-bubbleSort( list : array of items )
- 
-   n = list.count;
-    
-   for i = 0 to n-1 do:
- 
-      swapped = false
-      for j = 0 to n-i-1 do:
- 
-         /* compare the adjacent elements */  
-         if list[j] > list[j+1] then 
- 
-            /* swap them */
-            swap( list[j], list[j+1] )       
-            swapped = true
- 
-         end if
- 
-       end for
-       
-      /* if no number was swapped that means, break the loop.*/
-      if(swapped == false) then
-         break
-      end if
- 
-   end for
- 
-return list
+void bubble_sort(int arr[], int n){
+    bool isSorted = true;
+    for (int j = 0; j < n - 1; j++){
+        isSorted = true;
+        for (int i = 1; i < n; i++){
+            if (arr[i-1] > arr[i]){
+                std::swap(arr[i-1], arr[i]);
+                isSorted = false;
+            }
+        }
+        if (isSorted == true)
+            break;
+    }
+}
 ```
 
 ><img src="https://icon-library.com/images/important-note-icon/important-note-icon-17.jpg" alt="NOTE" width="15" height="15" > Bubble Sort is sometimes also referred as Sinking sort as instead of Bubbling up the smallest element to the left side, some developer write an algorithm to moving (sinking) largest element to right side.
