@@ -2,10 +2,11 @@
 
 ><img src="gif/transparent-warning-sign.png" alt="WARNING" width="30" height="30" > We should not use this method in real life project. This is only for learning.
 
+
 ## Work to do
 - [X] Understanding Bubble Sort Algorithm.
 - [X] Creating a basic C++ code for Bubble Sort Algorithm.
-- [] Creating Template for Bubble Sort Algorithm.
+- [ ] Creating Template for Bubble Sort Algorithm.
 - Applying Bubble Sort in other programming language.
 
 In **Bubble sort**, each element is compared with its adjacent element. If the first element is smaller than the second one, then the positions of the elements are interchanged, otherwise it is not changed.
