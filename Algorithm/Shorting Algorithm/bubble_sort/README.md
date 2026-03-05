@@ -13,7 +13,7 @@ In **Bubble sort**, each element is compared with its adjacent element. If the f
 
 Then next element is compared with its adjacent element and the same process is repeated for all the elements in the array until we get a sorted array.
 
-![BubbleSort_Avg_case](https://github.com/ravirajkarn/DSA/blob/main/Algorithm/Shorting%20Algorithm/bubble_sort/gif/transparent-warning-sign.png)
+![BubbleSort_Avg_case](https://github.com/ravirajkarn/DSA/blob/main/Algorithm/Shorting%20Algorithm/bubble_sort/gif/BubbleSort_Avg_case.gif)
 
 >## Algorithm 
 ```C++
