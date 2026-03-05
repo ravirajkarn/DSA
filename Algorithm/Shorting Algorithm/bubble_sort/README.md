@@ -40,7 +40,7 @@ Now if we consider time taken by each comparison is constant C. Then the total t
 
 <span style="display: block; text-align: center;">Average Case</span>|<span style="display: block; text-align: center;">Worst Case (Reverse List)</span>
 -----------------------------------------------------|------------------------------------------------------
-![BubbleSort_Avg_case](/gif/BubbleSort_Avg_case.gif) |  ![BubbleSort_Avg_case](/gif/BubbleSort_worst_case.gif)
+![BubbleSort_Avg_case](https://github.com/ravirajkarn/DSA/blob/main/Algorithm/Shorting%20Algorithm/bubble_sort/gif/BubbleSort_Avg_case.gif) |  ![BubbleSort_Avg_case](/gif/BubbleSort_worst_case.gif)
 
 >## Space Complexity
 The **space complexity** for the same will be **O(1)** as all operations are almost in space and only a single variable is used in loop for holding value.
