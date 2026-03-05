@@ -27,6 +27,7 @@ first eliminate any multiples of 2 ( 4, 6, 8, ... ),
 <br>then eliminate any multiples of 3 ( 6, 9, 12, ...),
 <br>then eliminate any multiples of 5 ( 10, 15, 20, ..) // 4 has already been eliminated and so on
 
+
 ![sieve of eratosthenes](img/sieve_of_eratosthenes.png "sieve of eratosthenes")
 
 - **Time Complexity:** $O(\log(\log n ))$.

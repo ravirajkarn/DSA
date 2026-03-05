@@ -21,8 +21,7 @@ namespace PrimeNumber{
                 return {};
             std::vector<bool> isPrime(limit + 1, true);
             isPrime[0] = isPrime[1] = false;
-
-            int sqrtLimit = static_cast<int>(std::sqrt(limit));
+            int sqrtLimit = static_cast<int>(std::sqrt(limit));          
             for (int i = 2; i <= sqrtLimit; ++i){
                 if (isPrime[i]){
                     for (int j = i * i; j <= limit; j += i){
