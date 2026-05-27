@@ -1,67 +1,124 @@
-># Bubble Sort | Sorting Algorithm
+# Binary Search
+[![C++](https://img.shields.io/badge/C++-23-blue.svg)](https://isocpp.org/) [![CMake](https://img.shields.io/badge/CMake-4.0+-green.svg)](https://cmake.org/) [![Conan](https://img.shields.io/badge/Conan-2.0-lightgrey.svg)](https://conan.io/) [![GTest](https://img.shields.io/badge/Testing-Google%20Test-yellow.svg)](https://github.com/google/googletest)
+## Overview
+This repository documents my journey of understanding, implementing, and refining the **Binary Search** algorithm in C++ and Python. The project is structured professionally using **CMake** for build configuration, **Conan** for package management, and **Google Test (GTest)** for robust unit testing.
 
-><img src="gif/transparent-warning-sign.png" alt="WARNING" width="30" height="30" > We should not use this method in real life project. This is only for learning.
+It divide and concur rule.
+We divide an array/list in two part and check for the number. If the number is less then the given number then we check the first half. the first half will again divide into two part and so on. If the number is grater then the given number then we will work on the second half and further divide it and so on. If the number if equal to the number given then we found it!
+![[Binary Search.png]]![Binary Search](<assets/binary Search.gif>)
 
+> [!important]
+> - Binary search only works when your list is in sorted order.
 
-## Work to do
-- [X] Understanding Bubble Sort Algorithm.
-- [X] Creating a basic C++ code for Bubble Sort Algorithm.
-- [ ] Creating Template for Bubble Sort Algorithm.
-- Applying Bubble Sort in other programming language.
+## Implementation
+> [!success] Python Implementation
+> The binary_search function takes a sorted array and an item. If the  item is in the array, the function returns its position.
+>
+> ```python
+> # This code is created by me
+> def binary_search(nums, target):
+>    low = 0 
+>    high = len(nums) - 1
+>    num = (low + high) // 2
+>    mid = nums[num]
+>    while low <= high and target >= nums[low] and target <= nums[high]:
+>        if mid != target:
+>            if mid <= target:
+>                low = num
+>            else:
+>                high = mid
+>            num = (low + high) // 2
+>            mid = nums[num]
+>            if nums[low] == target: return low
+>            if nums[high] == target: return high
+>            if low == mid: break
+>        else:
+>            return mid
+>    return -1
+>        
+>def main():
+>    number = [11, 12, 13, 14, 16, 17, 18, 19, 110, 111]
+>    target = 0
+>    print(f"the number is: {binary_search(number, target)}")
+>
+>if __name__ == "__main__":
+>    main()
+> ```
 
-In **Bubble sort**, each element is compared with its adjacent element. If the first element is smaller than the second one, then the positions of the elements are interchanged, otherwise it is not changed.
+> [!success] CPP Implementation
+>
+> ```Cpp
+> #include <iostream>
+> #include <vector>
+> int my_binary_search(const std::vector<int>& nums, int target) {
+>  if (nums.empty()) return -1;
+>  int low = 0;
+>  int high = nums.size() - 1;
+>  int mid = (low + high) / 2;
+>  while (low <= high && target >= nums.at(low) && target <= nums.at(high)) {
+>    if (nums.at(mid) != target) {
+>      if (nums.at(mid) <= target)
+>        low = mid;
+>      else
+>        high = mid;
+>      mid = (low + high) / 2;
+>      if (nums.at(low) == target) return low;
+>      if (nums.at(high) == target) return high;
+>      if (low == mid) break;
+>    } else
+>      return mid;
+>  }
+>  return -1;
+>}
+>   
+> int main() {
+>  std::vector<int> number = {11, 12, 13, 14, 16, 17, 18, 19, 110, 111};
+>  int item = 19;
+>  std::cout << "the numbe is: " << my_binary_search(number, item) << std::endl;
+>  return 0;
+> }
+> ```
 
-Then next element is compared with its adjacent element and the same process is repeated for all the elements in the array until we get a sorted array.
+>[!Tip] Time Complexity
+>
+>- **Best Case: O(1)**
+>- **Average Case: O($log(n)$)**
+>- **Worst case: O($log(n)$)**
 
-![BubbleSort_Avg_case](/gif/BubbleSort_Avg_case.gif)
+## 🧠 What I Learned
 
->## Algorithm 
-```C++
-void bubble_sort(int arr[], int n){
-    bool isSorted = true;
-    for (int j = 0; j < n - 1; j++){
-        isSorted = true;
-        for (int i = 1; i < n; i++){
-            if (arr[i-1] > arr[i]){
-                std::swap(arr[i-1], arr[i]);
-                isSorted = false;
-            }
-        }
-        if (isSorted == true)
-            break;
-    }
-}
+* **Algorithm Precision:** Binary search seems simple on the surface, but off-by-one errors and loop conditions require absolute precision.
+* **Production vs. Competitive Code:** I explored how standard library functions work compared to custom implementations, and learned the difference between competitive programming "0ms hacks" (like bitwise parsing and bypassing test runners) and clean, production-ready code.
+* **Modern C++ Tooling:** I learned how to set up a real-world C++ project from scratch:
+  * Using **CMake (`CMakeLists.txt`)** to manage targets, compiler standards (C++23), and linking libraries.
+  * Using **Conan (`conanfile.py`)** to cleanly manage dependencies (like GTest) instead of manually downloading and linking binaries.
+  * Writing unit tests with **GTest** to mathematically prove my code works across all expected and unexpected edge cases.
+
+## 🚀 Getting Started
+
+### Prerequisites
+* C++ Compiler supporting C++23
+* CMake (>= 4.0)
+* Conan Package Manager (2.x)
+
+### Build & Run Instructions
+
+**1. Install dependencies using Conan:**
+```bash
+conan install . --build=missing
+```
+**2. Configure and Build with CMake:**
+
+```Bash
+cmake -G "Ninja" -S . -B build/Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=generators/conan_toolchain.cmake
+
+cmake --build build/Release
 ```
 
-><img src="https://icon-library.com/images/important-note-icon/important-note-icon-17.jpg" alt="NOTE" width="15" height="15" > Bubble Sort is sometimes also referred as Sinking sort as instead of Bubbling up the smallest element to the left side, some developer write an algorithm to moving (sinking) largest element to right side.
+**3. Run the Tests:**
 
->## Time Complexity
-Now if we consider time taken by each comparison is constant C. Then the total time taken for the above sorting will be C*( N-1 + N-2 + … + 2 + 1 )  which on solving becomes O(N^2) time complexity.
-
-<span style="display: block; text-align: center;">Average Case</span>|<span style="display: block; text-align: center;">Worst Case (Reverse List)</span>
------------------------------------------------------|------------------------------------------------------
-![BubbleSort_Avg_case](/gif/BubbleSort_Avg_case.gif) |  ![BubbleSort_Avg_case](/gif/BubbleSort_worst_case.gif)
-
->## Space Complexity
-The **space complexity** for the same will be **O(1)** as all operations are almost in space and only a single variable is used in loop for holding value.
-
-Bubble sort gives stable and in place sorting.
-
->## Advantage
-* When data set is small, bubble sort is efficient
-* Easy to implement
-* Memory efficient
-* It gives stable sort
-
->## Disadvantage
-* It is time-inefficient as it is having O(N2) time complexity.
-* For large data set it is not very efficient as time grows exponentially.
-
->## Example
-
-Let's sort the array `[5, 2, 9, 1, 5, 6]` using Bubble Sort:
-
-- **Initial Array**: [5, 2, 9, 1, 5, 6]
-- **Pass 1**: [2, 5, 1, 5, 6, 9] (9 bubbled to the correct position)
-- **Pass 2**: [2, 1, 5, 5, 6, 9]
-- **Pass 3**: [1, 2, 5, 5, 6, 9] (Array is now sorted)
+```Bash
+cmake --build build/Release --target test
+# Or run the test executable directly
+./build/Release/leetCode_test
+```

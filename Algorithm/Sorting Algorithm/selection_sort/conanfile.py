@@ -2,26 +2,26 @@ from conan import ConanFile
 from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 
 
-class pkgRecipe(ConanFile):
-    name = "selection sort"
+class BinarySearchRecipe(ConanFile):
+    name = "Binary Search"
     version = "0.1"
     package_type = "application"
 
     # Optional metadata
-    license = "non"
-    author = "Ravirajkarn ravirajkarn@outlook.com"
+    license = "<Put the package license here>"
+    author = "Sumit Kumar", "ravirajkarn@outlook.com"
     url = "<Package recipe repository url here, for issues about the package>"
-    description = "Demonstration of selection sort"
-    topics = ("Sorting Method", "Bubble Sort")
+    description = "Study on prime number and is's algorithms"
+    topics = ("c++", "Binary Search", "Algorithms")
 
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
 
     # Sources are located in the same place as this recipe, copy them to the recipe
     exports_sources = "CMakeLists.txt", "src/*"
-    
+
     def requirements(self):
-        self.requires("fmt/12.1.0")
+        self.test_requires("gtest/1.17.0")
 
     def layout(self):
         cmake_layout(self)
@@ -40,3 +40,7 @@ class pkgRecipe(ConanFile):
     def package(self):
         cmake = CMake(self)
         cmake.install()
+
+    
+
+    

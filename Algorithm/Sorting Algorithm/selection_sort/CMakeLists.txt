@@ -1,22 +1,29 @@
-cmake_minimum_required(VERSION 3.15)
-project(selection_sort CXX)
+cmake_minimum_required(VERSION 4.0)
+project(binary_search CXX)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-execute_process(
-    COMMAND conan install . --build=missing --profile=profile
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-    RESULT_VARIABLE conan_result
+find_package(GTest REQUIRED)
+
+add_executable(binary_search src/binary_search.cpp)
+target_include_directories(binary_search 
+    PRIVATE 
+    ${CMAKE_SOURCE_DIR}/inc
 )
-if(NOT ${conan_result} EQUAL 0)
-    message(FATAL_ERROR "Conan install failed")
-endif()
 
-include(${CMAKE_BINARY_DIR}/generators/conan_toolchain.cmake)
+add_executable(leetCode_test test/leetCode_test.cpp)
+target_include_directories(leetCode_test 
+    PRIVATE 
+    ${CMAKE_SOURCE_DIR}/inc
+)
+target_link_libraries(leetCode_test 
+    PRIVATE 
+    GTest::gtest 
+    GTest::gtest_main
+)
 
-find_package(fmt REQUIRED)
+enable_testing()
+include(GoogleTest)
 
-add_executable(selection_sort src/demonstrate.cpp)
-target_link_libraries(selection_sort PRIVATE fmt::fmt)
-target_include_directories(selection_sort PRIVATE ${CMAKE_SOURCE_DIR}/include)
+gtest_discover_tests(leetCode_test)
