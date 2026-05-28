@@ -1,98 +1,87 @@
-# Binary Search
+# Selection Sort
 [![C++](https://img.shields.io/badge/C++-23-blue.svg)](https://isocpp.org/) [![CMake](https://img.shields.io/badge/CMake-4.0+-green.svg)](https://cmake.org/) [![Conan](https://img.shields.io/badge/Conan-2.0-lightgrey.svg)](https://conan.io/) [![GTest](https://img.shields.io/badge/Testing-Google%20Test-yellow.svg)](https://github.com/google/googletest)
-## Overview
-This repository documents my journey of understanding, implementing, and refining the **Binary Search** algorithm in C++ and Python. The project is structured professionally using **CMake** for build configuration, **Conan** for package management, and **Google Test (GTest)** for robust unit testing.
 
-It divide and concur rule.
-We divide an array/list in two part and check for the number. If the number is less then the given number then we check the first half. the first half will again divide into two part and so on. If the number is grater then the given number then we will work on the second half and further divide it and so on. If the number if equal to the number given then we found it!
-![[Binary Search.png]]![Binary Search](<assets/binary Search.gif>)
+## Overview
+This repository documents my journey of understanding, implementing, and refining the **Selection Sort** algorithm in C++. The project is structured professionally using **CMake** for build configuration, **Conan** for package management, and **Google Test (GTest)** for robust unit testing.
+
+Selection sort is a simple, in-place comparison sorting algorithm. It works by dividing the input list into two parts: a sorted sublist of items which is built up from left to right at the front (left) of the list, and a sublist of the remaining unsorted items that occupy the rest of the list. Initially, the sorted sublist is empty and the unsorted sublist is the entire input list. The algorithm proceeds by finding the smallest element in the unsorted sublist, exchanging (swapping) it with the leftmost unsorted element, and moving the sublist boundaries one element to the right.
+
+![Selection Sort](<assets/selectionSort.gif>)
 
 > [!important]
-> - Binary search only works when your list is in sorted order.
+> - Selection sort always performs $O(n^2)$ comparisons regardless of the initial order of the array, making it highly predictable but inefficient for large datasets.
 
 ## Implementation
-> [!success] Python Implementation
-> The binary_search function takes a sorted array and an item. If the  item is in the array, the function returns its position.
->
-> ```python
-> # This code is created by me
-> def binary_search(nums, target):
->    low = 0 
->    high = len(nums) - 1
->    num = (low + high) // 2
->    mid = nums[num]
->    while low <= high and target >= nums[low] and target <= nums[high]:
->        if mid != target:
->            if mid <= target:
->                low = num
->            else:
->                high = mid
->            num = (low + high) // 2
->            mid = nums[num]
->            if nums[low] == target: return low
->            if nums[high] == target: return high
->            if low == mid: break
->        else:
->            return mid
->    return -1
->        
->def main():
->    number = [11, 12, 13, 14, 16, 17, 18, 19, 110, 111]
->    target = 0
->    print(f"the number is: {binary_search(number, target)}")
->
->if __name__ == "__main__":
->    main()
-> ```
 
 > [!success] CPP Implementation
 >
-> ```Cpp
-> #include <iostream>
+> ```cpp
+> #include <print>
 > #include <vector>
-> int my_binary_search(const std::vector<int>& nums, int target) {
->  if (nums.empty()) return -1;
->  int low = 0;
->  int high = nums.size() - 1;
->  int mid = (low + high) / 2;
->  while (low <= high && target >= nums.at(low) && target <= nums.at(high)) {
->    if (nums.at(mid) != target) {
->      if (nums.at(mid) <= target)
->        low = mid;
->      else
->        high = mid;
->      mid = (low + high) / 2;
->      if (nums.at(low) == target) return low;
->      if (nums.at(high) == target) return high;
->      if (low == mid) break;
->    } else
->      return mid;
+> #include <utility>
+> 
+> void selectionSort(std::vector<int>& nums) {
+>  if (nums.empty()) return;
+>  for (int index = 0; index < nums.size(); ++index) {
+>    int selected = index;
+>    for (size_t selector = index + 1; selector < nums.size(); ++selector) {
+>      if (nums[selector] < nums[selected]) selected = selector;
+>    }
+>    if (index != selected) std::swap(nums.at(index), nums[selected]);
 >  }
->  return -1;
 >}
->   
+>
+> 
 > int main() {
->  std::vector<int> number = {11, 12, 13, 14, 16, 17, 18, 19, 110, 111};
->  int item = 19;
->  std::cout << "the numbe is: " << my_binary_search(number, item) << std::endl;
->  return 0;
+>   std::vector<int> number = {64, 25, 12, 22, 11, -1, 0, 3, 5, 9, 12};
+>   std::print("{}\n", number);
+>   selectionSort(number);
+>   std::print("the number sorted is: {}\n", number);
+>   return 0;
 > }
 > ```
 
->[!Tip] Time Complexity
+>[!success] Python Implementation
+>```python 
+># This code is created by me
+>def selection_sort(nums):
+>    if len(nums) < 1:
+>        return nums
+>    for index in range(len(nums)):
+>        selected = index
+>        selector = index
+>        for selector in range(index + 1, len(nums)):
+>            if nums[selector] < nums[selected]:
+>                selected = selector
+>        if index != selected:
+>            nums[index], nums[selected] = nums[selected], nums[index]
 >
->- **Best Case: O(1)**
->- **Average Case: O($log(n)$)**
->- **Worst case: O($log(n)$)**
+>
+>def main():
+>    number = [64, 25, 12, 22, 11, -1, 0, 3, 5, 9, 12]
+>    selection_sort(number)
+>    print(f"the number is: {number}")
+>
+>
+>if __name__ == "__main__":
+>    main()
+>```
+
+>[!Tip] Time & Space Complexity
+>
+>- **Best Case: O($n^2$)**
+>- **Average Case: O($n^2$)**
+>- **Worst case: O($n^2$)**
+>- **Space Complexity: O(1)** (In-place sort)
 
 ## 🧠 What I Learned
 
-* **Algorithm Precision:** Binary search seems simple on the surface, but off-by-one errors and loop conditions require absolute precision.
-* **Production vs. Competitive Code:** I explored how standard library functions work compared to custom implementations, and learned the difference between competitive programming "0ms hacks" (like bitwise parsing and bypassing test runners) and clean, production-ready code.
-* **Modern C++ Tooling:** I learned how to set up a real-world C++ project from scratch:
-  * Using **CMake (`CMakeLists.txt`)** to manage targets, compiler standards (C++23), and linking libraries.
-  * Using **Conan (`conanfile.py`)** to cleanly manage dependencies (like GTest) instead of manually downloading and linking binaries.
-  * Writing unit tests with **GTest** to mathematically prove my code works across all expected and unexpected edge cases.
+* **Algorithm Mechanics:** Selection sort is intuitive and teaches valuable lessons about nested loops, array boundaries, and in-place swapping without requiring auxiliary arrays.
+* **Modern C++23 Features:** Utilized modern C++23 features like `std::print` for cleaner output formatting, bypassing older `std::cout` paradigms.
+* **Modern C++ Tooling:** Continued reinforcing best practices for real-world C++ project structure:
+  * Using **CMake (`CMakeLists.txt`)** to manage targets, C++23 compiler standards, and linking libraries.
+  * Using **Conan (`conanfile.py`)** to cleanly manage dependencies (like GTest).
+  * Writing comprehensive unit tests with **GTest**, mathematically proving the sorting logic handles empty vectors, duplicates, negative numbers, and reverse-sorted lists gracefully.
 
 ## 🚀 Getting Started
 
@@ -111,7 +100,6 @@ conan install . --build=missing
 
 ```Bash
 cmake -G "Ninja" -S . -B build/Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=generators/conan_toolchain.cmake
-
 cmake --build build/Release
 ```
 
@@ -120,5 +108,5 @@ cmake --build build/Release
 ```Bash
 cmake --build build/Release --target test
 # Or run the test executable directly
-./build/Release/leetCode_test
+./build/Release/gemini_test
 ```

@@ -1,28 +1,22 @@
 # This code is created by me
-def binary_search(nums, target):
-    low = 0 
-    high = len(nums) - 1
-    num = (low + high) // 2
-    mid = nums[num]
-    while low <= high and target >= nums[low] and target <= nums[high]:
-        if mid != target:
-            if mid <= target:
-                low = num
-            else:
-                high = mid
-            num = (low + high) // 2
-            mid = nums[num]
-            if nums[low] == target: return low
-            if nums[high] == target: return high
-            if low == mid: break
-        else:
-            return mid
-    return -1
-        
+def selection_sort(nums):
+    if len(nums) < 1:
+        return nums
+    for index in range(len(nums)):
+        selected = index
+        selector = index
+        for selector in range(index + 1, len(nums)):
+            if nums[selector] < nums[selected]:
+                selected = selector
+        if index != selected:
+            nums[index], nums[selected] = nums[selected], nums[index]
+
+
 def main():
-    number = [11, 12, 13, 14, 16, 17, 18, 19, 110, 111]
-    target = 0
-    print(f"the number is: {binary_search(number, target)}")
+    number = [64, 25, 12, 22, 11, -1, 0, 3, 5, 9, 12]
+    selection_sort(number)
+    print(f"the number is: {number}")
+
 
 if __name__ == "__main__":
     main()

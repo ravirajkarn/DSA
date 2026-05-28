@@ -13,9 +13,8 @@
 
 int main() {
   std::vector<int> number = {64, 25, 12, 22, 11, -1, 0, 3, 5, 9, 12};
-  std::print("the numbe is:\n");
-  std::print("the numbe is: {}\n", number);
+  std::print("the numbe befor: {}\n", number);
   selectionSort(number);
-  std::print("the numbe is: {}\n", number);
+  std::print("the numbe after: {}\n", number);
   return 0;
 }

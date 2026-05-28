@@ -3,13 +3,13 @@
 #include <print>
 #include <vector>
 
-void selectionSort(std::vector<int>& set) {
-  for (int index = 0; index < set.size(); ++index) {
+void selectionSort(std::vector<int>& nums) {
+  if (nums.empty()) return;
+  for (int index = 0; index < nums.size(); ++index) {
     int selected = index;
-    for (int selector = index; selector < set.size(); ++selector) {
-      if (set.at(selector) < set.at(selected)) selected = selector;
+    for (size_t selector = index + 1; selector < nums.size(); ++selector) {
+      if (nums[selector] < nums[selected]) selected = selector;
     }
-    std::swap(set.at(index), set.at(selected));
-    if (index >= set.size()) break;
+    if (index != selected) std::swap(nums.at(index), nums[selected]);
   }
 }
