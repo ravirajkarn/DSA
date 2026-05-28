@@ -2,8 +2,8 @@ from conan import ConanFile
 from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 
 
-class BinarySearchRecipe(ConanFile):
-    name = "Binary Search"
+class SelectionSortRecipe(ConanFile):
+    name = "Selection Sort"
     version = "0.1"
     package_type = "application"
 
@@ -12,7 +12,7 @@ class BinarySearchRecipe(ConanFile):
     author = "Sumit Kumar", "ravirajkarn@outlook.com"
     url = "<Package recipe repository url here, for issues about the package>"
     description = "Study on prime number and is's algorithms"
-    topics = ("c++", "Binary Search", "Algorithms")
+    topics = ("c++", "Selection Sort", "Sort", "Algorithms")
 
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
