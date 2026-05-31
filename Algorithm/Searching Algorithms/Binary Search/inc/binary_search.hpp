@@ -9,7 +9,8 @@ int my_binary_search(const std::vector<int>& nums, int target) {
   if (nums.empty()) return -1;
   int low = 0;
   int high = nums.size() - 1;
-  int mid = (low + high) / 2;
+  // int mid = (low + high) / 2;
+  int mid = low + (high - low) / 2 ;
   while (low <= high && target >= nums.at(low) && target <= nums.at(high)) {
     if (nums.at(mid) != target) {
       if (nums.at(mid) <= target)

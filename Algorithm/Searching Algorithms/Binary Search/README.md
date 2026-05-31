@@ -19,7 +19,7 @@ We divide an array/list in two part and check for the number. If the number is l
 > def binary_search(nums, target):
 >    low = 0 
 >    high = len(nums) - 1
->    num = (low + high) // 2
+>    num = low + (high - low) // 2
 >    mid = nums[num]
 >    while low <= high and target >= nums[low] and target <= nums[high]:
 >        if mid != target:
@@ -27,7 +27,7 @@ We divide an array/list in two part and check for the number. If the number is l
 >                low = num
 >            else:
 >                high = mid
->            num = (low + high) // 2
+>            num = low + (high - low) // 2
 >            mid = nums[num]
 >            if nums[low] == target: return low
 >            if nums[high] == target: return high
@@ -54,7 +54,7 @@ We divide an array/list in two part and check for the number. If the number is l
 >  if (nums.empty()) return -1;
 >  int low = 0;
 >  int high = nums.size() - 1;
->  int mid = (low + high) / 2;
+>  int mid = low + (high - low) / 2 ;
 >  while (low <= high && target >= nums.at(low) && target <= nums.at(high)) {
 >    if (nums.at(mid) != target) {
 >      if (nums.at(mid) <= target)

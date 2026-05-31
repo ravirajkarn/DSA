@@ -2,7 +2,7 @@
 def binary_search(nums, target):
     low = 0 
     high = len(nums) - 1
-    num = (low + high) // 2
+    num = low + (high - low) // 2
     mid = nums[num]
     while low <= high and target >= nums[low] and target <= nums[high]:
         if mid != target:
@@ -10,7 +10,7 @@ def binary_search(nums, target):
                 low = num
             else:
                 high = mid
-            num = (low + high) // 2
+            num = num = low + (high - low) // 2
             mid = nums[num]
             if nums[low] == target: return low
             if nums[high] == target: return high
